@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestão de Funcionários</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <section id="view-login" class="card">
+    <h1>🔐 Gestão de Funcionários — Login</h1>
+    <p class="muted">Entre com seu e-mail e senha.</p>
+    <label>E-mail</label>
+    <input id="email" placeholder="admin@guardiao.local" />
+    <label>Senha</label>
+    <input id="password" type="password" placeholder="••••••••" />
+    <div class="toolbar">
+      <button id="btn-login" class="btn">Entrar</button>
+    </div>
+    <p id="login-msg" class="muted"></p>
+  </section>
+
+  <!-- APP -->
+  <section id="view-app" class="hidden">
+    <header class="topbar">
+      <h1>🛡️ Painel — Gestão de Funcionários</h1>
+      <div class="toolbar">
+        <button id="btn-open-insert" class="btn">➕ Inserir</button>
+        <button id="btn-open-evaluate" class="btn">📋 Avaliar</button>
+        <button id="btn-open-admin" class="btn">🗂️ Registros Adm.</button>
+        <button id="btn-open-list" class="btn">👥 Lista/Edição</button>
+        <button id="btn-open-reports" class="btn">📊 Relatórios</button>
+        <button id="btn-logout" class="btn danger">Sair</button>
+      </div>
+    </header>
+
+    <!-- KPIs -->
+    <section class="grid">
+      <div class="card kpi"><div>👥</div><div><div class="muted">Colaboradores</div><div id="kpi-count" class="score">—</div></div></div>
+      <div class="card kpi"><div>⭐</div><div><div class="muted">Score médio</div><div id="kpi-avg" class="score">—</div></div></div>
+      <div class="card kpi"><div>✅</div><div><div class="muted">Última ação</div><div id="kpi-last" class="score">—</div></div></div>
+    </section>
+
+    <!-- PAINÉIS -->
+    <section id="panel-insert" class="card hidden">
+      <h2>➕ Inserir novo colaborador</h2>
+      <div class="row">
+        <div><label>Nome</label><input id="in-nome"/></div>
+        <div><label>CPF</label><input id="in-cpf" placeholder="000.000.000-00"/></div>
+        <div><label>Posto</label><input id="in-posto"/></div>
+      </div>
+      <div class="row">
+        <div><label>Admissão</label><input id="in-adm" type="date"/></div>
+        <div><label>Score inicial</label><input id="in-score" type="number" value="1000"/></div>
+      </div>
+      <button id="btn-insert" class="btn success">Salvar</button>
+      <p id="insert-msg" class="muted"></p>
+    </section>
+
+    <section id="panel-evaluate" class="card hidden">
+      <h2>📋 Avaliar colaborador</h2>
+        <div>
+          <label>Colaborador</label>
+          <select id="ev-emp"></select>
+        </div>
+        <div>
+          <label>Tipo</label>
+          <select id="ev-type">
+            <option value="falta">Falta (-10)</option>
+            <option value="atestado">Atestado (-1)</option>
+            <option value="advertencia">Advertência (-5)</option>
+            <option value="suspensao">Suspensão (-30)</option>
+            <option value="atraso">Atraso (-1)</option>
+            <option value="elogio">Elogio (+5)</option>
+            <option value="bonificacao">Bonificação (+10)</option>
+            <option value="extra">Extra (+1)</option>
+          </select>
+        </div>
+      </div>
+      <label>Descrição</label>
+      <input id="ev-desc" placeholder="Breve descrição do fato" />
+      <button id="btn-ev-save" class="btn success">Lançar</button>
+      <p id="ev-msg" class="muted"></p>
+    </section>
+
+    <section id="panel-admin" class="card hidden">
+      <h2>🗂️ Registro administrativo (não afeta score)</h2>
+      <div class="row">
+        <div><label>Colaborador</label><select id="ad-emp"></select></div>
+        <div>
+          <label>Tipo</label>
+          <select id="ad-type">
+            <option value="aumento_salarial">Aumento salarial</option>
+            <option value="troca_funcao">Troca de função</option>
+            <option value="troca_posto">Troca de posto</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+      </div>
+      <label>Descrição</label>
+      <input id="ad-desc" placeholder="Ex.: Reajuste para R$ X, a partir de DD/MM/AAAA" />
+      <button id="btn-ad-save" class="btn">Salvar</button>
+      <p id="ad-msg" class="muted"></p>
+    </section>
+
+    <section id="panel-list" class="card hidden">
+      <h2>👥 Lista de colaboradores</h2>
+      <div class="row">
+        <input id="search" placeholder="Buscar por nome ou CPF"/>
+        <button id="btn-search" class="btn">Pesquisar</button>
+      </div>
+      <table class="table" id="table-emps">
+        <thead><tr><th>Nome</th><th>CPF</th><th>Posto</th><th>Admissão</th><th>Score</th><th>Ações</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <h3>✏️ Editar colaborador</h3>
+      <div class="row">
+        <div><label>Id</label><input id="ed-id" readonly/></div>
+        <div><label>Nome</label><input id="ed-nome"/></div>
+        <div><label>CPF</label><input id="ed-cpf"/></div>
+        <div><label>Posto</label><input id="ed-posto"/></div>
+        <div><label>Admissão</label><input id="ed-adm" type="date"/></div>
+      </div>
+      <button id="btn-save-edit" class="btn success">Salvar alterações</button>
+  <button id="btn-delete" class="btn danger" style="margin-left:10px;">Excluir colaborador</button>
+  <p id="edit-msg" class="muted"></p>
+    </section>
+
+    <section id="panel-reports" class="card hidden">
+      <h2>📊 Relatórios</h2>
+      <div class="row">
+        <div><label>Início</label><input id="rp-start" type="date"/></div>
+        <div><label>Fim</label><input id="rp-end" type="date"/></div>
+        <div><label>Posto (opcional)</label><input id="rp-posto"/></div>
+        <div>
+          <label>Tipo (opcional)</label>
+          <select id="rp-tipo">
+            <option value="">Todos</option>
+            <option value="falta">Falta</option>
+            <option value="atestado">Atestado</option>
+            <option value="advertencia">Advertência</option>
+            <option value="suspensao">Suspensão</option>
+            <option value="atraso">Atraso</option>
+            <option value="elogio">Elogio</option>
+            <option value="bonificacao">Bonificação</option>
+            <option value="extra">Extra</option>
+          </select>
+        </div>
+      </div>
+      <button id="btn-run-report" class="btn">Gerar</button>
+      <div id="rp-summary"></div>
+      <table class="table" id="rp-table">
+        <thead><tr><th>Data</th><th>Colaborador</th><th>CPF</th><th>Posto</th><th>Tipo</th><th>Pontos</th><th>Descrição</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </section>
+
+  <footer class="footer">Grupo Guardião — Servir e Proteger</footer>
+  <script src="script.js"></script>
+</body>
+</html>
