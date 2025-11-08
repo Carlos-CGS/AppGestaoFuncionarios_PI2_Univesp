@@ -1,4 +1,4 @@
-# Gestão de Funcionários — Projeto PI II Univesp
+# Gestão de Funcionários - Projeto PI II Univesp
 
 Sistema web para gestão de funcionários, capaz de registrar e acompanhar o histórico dos colaboradores, aplicando métricas de desempenho que possibilitem a avaliação, a premiação dos melhores e a identificação daqueles com baixo rendimento.
 
