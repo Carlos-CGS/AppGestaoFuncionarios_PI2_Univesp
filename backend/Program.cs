@@ -357,6 +357,57 @@ app.MapPost("/api/adminrecords", async (AdminRecordReq req) =>
     return Results.Ok();
 }).RequireAuthorization();
 
+// Buscar registros administrativos de um colaborador
+app.MapGet("/api/adminrecords/employee/{id:int}", async (int id) =>
+{
+    await using var conn = new SqlConnection(Helpers.CONNECTION_STRING);
+    await conn.OpenAsync();
+    await using var cmd = new SqlCommand(@"
+        SELECT Tipo, Descricao, CreatedAt
+        FROM dbo.AdminRecords
+        WHERE EmployeeId = @id
+        ORDER BY CreatedAt DESC", conn);
+    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+    await using var rd = await cmd.ExecuteReaderAsync();
+    var list = new List<object>();
+    while (await rd.ReadAsync())
+    {
+        list.Add(new
+        {
+            tipo = rd.GetString(0),
+            descricao = rd.IsDBNull(1) ? null : rd.GetString(1),
+            createdAt = rd.GetDateTime(2)
+        });
+    }
+    return Results.Ok(list);
+}).RequireAuthorization();
+
+// Buscar ocorrências (avaliações) de um colaborador
+app.MapGet("/api/evaluations/employee/{id:int}", async (int id) =>
+{
+    await using var conn = new SqlConnection(Helpers.CONNECTION_STRING);
+    await conn.OpenAsync();
+    await using var cmd = new SqlCommand(@"
+        SELECT Tipo, Descricao, Points, CreatedAt
+        FROM dbo.Evaluations
+        WHERE EmployeeId = @id
+        ORDER BY CreatedAt DESC", conn);
+    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+    await using var rd = await cmd.ExecuteReaderAsync();
+    var list = new List<object>();
+    while (await rd.ReadAsync())
+    {
+        list.Add(new
+        {
+            tipo = rd.GetString(0),
+            descricao = rd.IsDBNull(1) ? null : rd.GetString(1),
+            pontos = rd.GetInt32(2),
+            createdAt = rd.GetDateTime(3)
+        });
+    }
+    return Results.Ok(list);
+}).RequireAuthorization();
+
 // ===== KPIs / Summary =====
 app.MapGet("/api/employees/summary", async () =>
 {

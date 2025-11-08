@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gestão de Funcionários</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <!-- LOGIN -->
@@ -24,22 +25,28 @@
   <!-- APP -->
   <section id="view-app" class="hidden">
     <header class="topbar">
-      <h1>🛡️ Painel — Gestão de Funcionários</h1>
+      <h1 style="display:flex;align-items:center;gap:10px;">
+        <img src="img/logo.png" alt="Logo" style="height:32px;vertical-align:middle;"> Painel — Gestão de Funcionários
+      </h1>
       <div class="toolbar">
-        <button id="btn-open-insert" class="btn">➕ Inserir</button>
-        <button id="btn-open-evaluate" class="btn">📋 Avaliar</button>
-        <button id="btn-open-admin" class="btn">🗂️ Registros Adm.</button>
-        <button id="btn-open-list" class="btn">👥 Lista/Edição</button>
-        <button id="btn-open-reports" class="btn">📊 Relatórios</button>
-        <button id="btn-logout" class="btn danger">Sair</button>
+  <button id="btn-open-kpi" class="btn">🏠 Início / KPIs</button>
+  <button id="btn-open-insert" class="btn">➕ Inserir</button>
+  <button id="btn-open-evaluate" class="btn">📋 Avaliar</button>
+  <button id="btn-open-admin" class="btn">🗂️ Registros Adm.</button>
+  <button id="btn-open-list" class="btn">👥 Lista/Edição</button>
+  <button id="btn-open-reports" class="btn">📊 Relatórios</button>
+  <button id="btn-logout" class="btn danger">Sair</button>
       </div>
     </header>
 
     <!-- KPIs -->
-    <section class="grid">
-      <div class="card kpi"><div>👥</div><div><div class="muted">Colaboradores</div><div id="kpi-count" class="score">—</div></div></div>
-      <div class="card kpi"><div>⭐</div><div><div class="muted">Score médio</div><div id="kpi-avg" class="score">—</div></div></div>
-      <div class="card kpi"><div>✅</div><div><div class="muted">Última ação</div><div id="kpi-last" class="score">—</div></div></div>
+    <section id="panel-kpi" class="card hidden">
+      <h2>🏠 Início / KPIs</h2>
+      <div class="grid">
+        <div class="card kpi"><div>👥</div><div><div class="muted">Colaboradores</div><div id="kpi-count" class="score">—</div></div></div>
+        <div class="card kpi"><div>⭐</div><div><div class="muted">Score médio</div><div id="kpi-avg" class="score">—</div></div></div>
+        <div class="card kpi"><div>✅</div><div><div class="muted">Última ação</div><div id="kpi-last" class="score">—</div></div></div>
+      </div>
     </section>
 
     <!-- PAINÉIS -->
@@ -60,6 +67,10 @@
 
     <section id="panel-evaluate" class="card hidden">
       <h2>📋 Avaliar colaborador</h2>
+        <div>
+          <label>Buscar colaborador</label>
+          <input id="ev-search" placeholder="Pesquise digitando o Nome ou CPF" />
+        </div>
         <div>
           <label>Colaborador</label>
           <select id="ev-emp"></select>
@@ -124,11 +135,19 @@
       </div>
       <button id="btn-save-edit" class="btn success">Salvar alterações</button>
   <button id="btn-delete" class="btn danger" style="margin-left:10px;">Excluir colaborador</button>
+  <button id="btn-pdf" class="btn" style="margin-left:10px;">Gerar relatório em PDF</button>
   <p id="edit-msg" class="muted"></p>
     </section>
 
     <section id="panel-reports" class="card hidden">
       <h2>📊 Relatórios</h2>
+      <div class="card" style="margin-bottom:20px;">
+        <h3>Relatório individual em PDF</h3>
+        <label>Buscar colaborador</label>
+        <input id="pdf-search" placeholder="Insira o Nome ou CPF do colaborador..." />
+        <div id="pdf-result" class="muted" style="margin-top:10px;"></div>
+        <button id="btn-pdf-report" class="btn" style="margin-top:10px;">Gerar relatório em PDF</button>
+      </div>
       <div class="row">
         <div><label>Início</label><input id="rp-start" type="date"/></div>
         <div><label>Fim</label><input id="rp-end" type="date"/></div>

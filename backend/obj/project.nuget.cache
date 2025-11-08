@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kQdkN6wkphI=",
+  "dgSpecHash": "PPGapNpCNPs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios - Reserva 26Ago25\\backend\\GuardiaoGestao.csproj",
+  "projectFilePath": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios\\backend\\GuardiaoGestao.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CARLOS GARCIA\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\CARLOS GARCIA\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

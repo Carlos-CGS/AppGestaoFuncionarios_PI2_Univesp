@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios - Reserva 26Ago25\\backend\\GuardiaoGestao.csproj": {}
+    "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios\\backend\\GuardiaoGestao.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios - Reserva 26Ago25\\backend\\GuardiaoGestao.csproj": {
+    "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios\\backend\\GuardiaoGestao.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios - Reserva 26Ago25\\backend\\GuardiaoGestao.csproj",
+        "projectUniqueName": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios\\backend\\GuardiaoGestao.csproj",
         "projectName": "GuardiaoGestao",
-        "projectPath": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios - Reserva 26Ago25\\backend\\GuardiaoGestao.csproj",
+        "projectPath": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios\\backend\\GuardiaoGestao.csproj",
         "packagesPath": "C:\\Users\\CARLOS GARCIA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios - Reserva 26Ago25\\backend\\obj\\",
+        "outputPath": "C:\\Users\\CARLOS GARCIA\\Desktop\\AppGestaoFuncionarios\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CARLOS GARCIA\\AppData\\Roaming\\NuGet\\NuGet.Config",

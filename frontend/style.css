@@ -2,6 +2,20 @@ body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu
 .hidden { display:none !important; }
 .card { background:#111827; border:1px solid #1f2937; border-radius:16px; padding:20px; margin:16px auto; max-width:1100px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
 .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding:16px; }
+.topbar h1 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.topbar .toolbar {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 h1,h2,h3 { margin:0 0 12px; }
 .muted { color:#94a3b8; }
 label { display:block; margin:10px 0 6px; color:#cbd5e1; }
@@ -17,3 +31,49 @@ input,select { width:100%; padding:10px 12px; border-radius:10px; border:1px sol
 .table { width:100%; border-collapse: collapse; }
 .table th, .table td { border-bottom:1px solid #1f2937; padding:10px; text-align:left; }
 .footer { text-align:center; color:#64748b; padding:24px; }
+#panel-evaluate > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 12px auto;
+}
+#panel-evaluate input, #panel-evaluate select {
+  width: 100%;
+  box-sizing: border-box;
+}
+#panel-reports .card {
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  box-sizing: border-box;
+}
+#pdf-search {
+  width: 100%;
+  box-sizing: border-box;
+}
+#pdf-result {
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+}
+#view-login.card {
+  max-width: 400px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+#view-login label, #view-login input, #view-login .toolbar, #view-login p {
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+}
+#view-login h1 {
+  text-align: center;
+  width: 100%;
+}
+#btn-pdf {
+  display: none !important;
+}
